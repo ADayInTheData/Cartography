@@ -18,6 +18,8 @@
 
 	p {
 		display: inline-block;
+		max-width: 80ch;
+		text-align: justify;
 	}
 
 	body {
