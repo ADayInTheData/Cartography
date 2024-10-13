@@ -17,9 +17,7 @@
 	}
 
 	p {
-		display: table;
-		margin: auto;
-		border-bottom:1px dotted;
+		display: inline-block;
 	}
 
 	body {
