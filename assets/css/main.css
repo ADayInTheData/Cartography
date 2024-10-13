@@ -16,11 +16,6 @@
 		display: block;
 	}
 
-	p {
-		display: inline-block;
-		text-align: justify;
-	}
-
 	body {
 		line-height: 1;
 	}
