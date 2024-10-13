@@ -16,6 +16,10 @@
 		display: block;
 	}
 
+	p {
+		display: inline-block;
+	}
+
 	body {
 		line-height: 1;
 	}
