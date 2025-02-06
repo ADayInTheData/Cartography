@@ -12,6 +12,24 @@
 		text-align: center;
 	}
 
+	h1.title {
+		font-size: 50px;
+	}
+	
+    p.blocktext {
+		text-align: justify;
+	}
+	
+	
+	div.container {
+		margin: auto;
+		width: 75%;
+	}
+	
+	h2.maptitle {
+		text-underline:
+	}
+	
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
@@ -41,6 +59,10 @@
 	body {
 		-webkit-text-size-adjust: none;
 	}
+	
+	
+		
+	
 
 /* Box Model */
 
@@ -1403,7 +1425,7 @@
 
 	body {
 		background-color: #000;
-		background-image: url("../../images/BG.jpg");
+		background-image: url("../../images/bg2.jpg");
 		background-size: cover;
 		background-position: top center;
 	}
