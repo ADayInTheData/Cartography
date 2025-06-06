@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Land Cover Classification</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Land Cover Classification Analysis Comparison: Unsupervised & Supervised</h2>
+    <p><em>Adam Day | April, 2025</em></p>
+
+    <section>
+      <h3>PURPOSE</h3>
+      <p>The purpose of this analysis was to visually compare the difference between both the Supervised and Unsupervised land cover classification methods.
+	  The results from this analysis highlight how two types of land cover classification methods can be used and how they differ. 
+	  Unsupervised classification allows the sensing software to create classification types based on an internal algorithm which sorts each pixel into a 
+	  unique class along with other similar pixels. It does not discriminate because land feature types because it does not interpret a green pixel as a tree, 
+	  rather it’s just a green pixel and therefore goes into Class 1. The supervised classification type relies on a user input ‘training data’ which it uses to 
+	  reference for the classification. Essentially, regions of interest created around like land cover features are grouped together based on their similarities 
+	  between the pixel colors, which are delineated manually by the user rather than automatically by the software. </p>
+	  
+	  <p>This analysis used both methods to create two different data sets shown below. Figure 1 shows a software driven; unsupervised classification of the image used. 
+	  Table 1 highlights the values counted for this image in regard to pixels. Each pixel equates to an area on the ground of roughly 30m x 30m or 900m2. As a result, water equated to 13%, 
+	  forest coverage was 18%, bare ground equated to 9%, agricultural ground measured 45% and developed land (residential & industrial) comprised of 14%.</p>
+	  
+	  <p>Figure 2 shows the same satellite image, but using the user driven, supervised classification method. Table 2 shows how the values of each area differ from the 
+	  unsupervised method. Water remained roughly equivalent at 14% total land cover, forest jumped to 37%, bare ground increased slightly to 10%, agricultural land was reduced to 25%, 
+	  and developed land remain close to its counterpart at 15%.</p>
+	  
+    <section>
+      <h3>FIGURES</h3>
+	  
+		<a href="images/remote-sensing/landsat_classification/figure_1.jpg" target="_blank">
+		<img src="images/remote-sensing/landsat_classification/figure_1.jpg" alt="Unsupervised Classification Method" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Unsupervised Classification Method</strong></p>
+		
+		<a href="images/remote-sensing/landsat_classification/figure_2.jpg" target="_blank">
+		<img src="images/remote-sensing/landsat_classification/figure_2.jpg" alt="Supervised Classification Method" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 2: Supervised Classification Method</strong></p>
+		
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th>Class</th>
+				  <th>Pixel Count</th>
+				  <th>Precent</th>
+				  <th>Area (Ha)</th>
+				  <th>& of Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>Water</td>
+				  <td>3,900,835</td>
+				  <td>12.9</td>
+				  <td>351,075</td>
+				  <td>13%</td>
+				</tr>
+				
+				<tr>
+				  <td>Forest</td>
+				  <td>5,421,721</td>
+				  <td>17.9</td>
+				  <td>487,955</td>
+				  <td>18%</td>
+				</tr>
+				
+				<tr>
+				  <td>Bare Ground</td>
+				  <td>2,779,419</td>
+				  <td>9.2</td>
+				  <td>250,148</td>
+				  <td>9%</td>
+				</tr>
+				<tr>
+				  <td>Agricultural</td>
+				  <td>13,506,519</td>
+				  <td>44.8</td>
+				  <td>1,215,587</td>
+				  <td>45%</td>
+				</tr>
+				<tr>
+				  <td>Developed</td>
+				  <td>4,259,023</td>
+				  <td>14.1</td>
+				  <td>383,312</td>
+				  <td>14%</td>
+				</tr>
+				<tr>
+				  <td></td>
+				  <td></td>
+				  <td><strong>Total</strong></td>
+				  <td><strong>2,688,077</strong></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p align=center ><strong>Table 1: Unsupervised Classification Statistics</strong></p>
+		
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th>Class</th>
+				  <th>Pixel Count</th>
+				  <th>Precent</th>
+				  <th>Area (Ha)</th>
+				  <th>& of Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>Water</td>
+				  <td>4,090,470</td>
+				  <td>13.5</td>
+				  <td>368,142</td>
+				  <td>4%</td>
+				</tr>
+				
+				<tr>
+				  <td>Forest</td>
+				  <td>10,954,062</td>
+				  <td>36.3</td>
+				  <td>985,866</td>
+				  <td>37%</td>
+				</tr>
+				
+				<tr>
+				  <td>Bare Ground</td>
+				  <td>2,857,370</td>
+				  <td>9.4</td>
+				  <td>257,163</td>
+				  <td>10%</td>
+				</tr>
+				<tr>
+				  <td>Agricultural</td>
+				  <td>7,598,038</td>
+				  <td>25.2</td>
+				  <td>683,823</td>
+				  <td>25%</td>
+				</tr>
+				<tr>
+				  <td>Developed</td>
+				  <td>4,366,643</td>
+				  <td>14.4</td>
+				  <td>392,998</td>
+				  <td>15%</td>
+				</tr>
+				<tr>
+				  <td></td>
+				  <td></td>
+				  <td><strong>Total</strong></td>
+				  <td><strong>2,687,992</strong></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p align=center ><strong>Table 2: Supervised Classification Statistics</strong></p>
+    </section>
+	
+	
+
+    <section>
+      <h3>DISCUSSION</h3>
+	  <p>As shown in the analysis above, both classification methods are similar in approach, but have different sets of pros and cons. Water, bare ground, and developed land appeared to
+	  remain the most similar between the two datasets, which is understandable as those features are generally easy to view from satellite image. Major variations are found between the 
+	  two classification methods, namely involving the forest and agricultural land cover types. In the unsupervised approach, it appears the software might have difficulty in delineating 
+	  between trees, grasses, or shrubs. As a result, it seems to heavily favor grouping these colors together without  delineating between the subtle variances between the colors. 
+	  However, to the human eye, who likely has seen or is accustomed to seeing these landcover types both in person and imaging software, might be able to pick up the subtle variances 
+	  and delineate between them better, which may explain the differences between the outcomes from this analysis.</p>
+	  
+	  <p>As a result, supervised classification is likely better suited for an analysis where accuracy is a vital component. However, the drawback to using the supervised classification approach 
+	  would be time in manually delineating each feature, deciding which features could be grouped together into a single group, and error in incorrectly classifying landcover features due to 
+	  misinterpretation of the image. An unsupervised approach is likely best suited for large scale classification projects with a short time. Having a software automate the approach certainly 
+	  saves time and effort with a decent amount of accuracy, but the main drawback being sacrificing accuracy as the software might be limited in delineating between similar landcover features.</p>
+    </section>
+    <a href="remote-sensing.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Remote Sensing Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>

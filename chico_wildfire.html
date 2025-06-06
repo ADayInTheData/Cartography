@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chico Park Fire: 2024</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Mapping The 2024 Park Fire; Chico, CA</h2>
+    <p><em>Adam Day | April, 2025</em></p>
+
+    <section>
+      <h3>1. INTRODUCTION</h3>
+      <p>In July 2024, Chico California saw its largest wildlife of the 2024 wildfire season. The fire presumably began as an act of arson and 
+	  quickly grew into a regional threat which saw several emergency response efforts including closure of public lands, evacuation of local 
+	  communities, and fire suppression efforts which were ultimately defied by fire. The purpose of this analysis is to provide a measurable 
+	  impact of the burned area in Chico, CA on July 27, 2024, three days after the initial ignition.
+	  Landsat 8 Satellite imagery of the impacted area taken on July 27, 2024 was used for this analysis.</p>
+	  
+	  <p>The Landsat 8 project provides free, publicly available data which includes imagery generated from a passive sensor capturing 9 spectral bands 
+	  ranging from 0.4 µm up to 1.38 µm. This range captures the Coastal Aerosol band, the full visible spectrum, along with the NIR, SWIR 1 & @, along 
+	  with Panchromatic and Cirrus bands. These bands are captured in 30m spatial resolution with a 12-bit radiometric resolution and are cycled through 
+	  a 16-day temporal resolution providing accurate and up-to-date imagery data making it ideal for this analysis.</p>
+	  
+    <section>
+      <h3>RESULTS</h3>
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th></th>
+				  <th>MODIS</th>
+				  <th>Landsat 8</th>
+				  <th>Landsat 9</th>
+				  <th>PlanetScope</th>
+				  <th>NAIP</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>Spatial Resolution</td>
+				  <td>1000x1000</td>
+				  <td>30x30</td>
+				  <td>30x30</td>
+				  <td>3x3</td>
+				  <td>0.6x0.6</td>
+				</tr>
+				<tr>
+				  <td>Spectral Resolution</td>
+				  <td>36 Bands; 0.4 µm-14.14 µm</td>
+				  <td>9 Bands; Coastal-Cirrus</td>
+				  <td>9 Bands; Ranging from Coastal Aerosol - Cirrus</td>
+				  <td>4 Bands: Blue, Green, Red, NIR</td>
+				  <td>4 Bands; Red, Green, Blue, NIR</td>
+				</tr>
+				<tr>
+				  <td>Radiometric Resolution</td>
+				  <td>12-bit</td>
+				  <td>12-bit</td>
+				  <td>14-bit</td>
+				  <td>16-bit</td>
+				  <td>8-bit</td>
+				</tr>
+				<tr>
+				  <td>Temporal Resolution</td>
+				  <td>8 days</td>
+				  <td>16 days</td>
+				  <td>16 days</td>
+				  <td>12-13 days</td>
+				  <td>2-3 years</td>
+				</tr>
+				<tr>
+				  <td>Date Acquired</td>
+				  <td>7/27/2024</td>
+				  <td>7/27/2024</td>
+				  <td>7/27/2024</td>
+				  <td>7/27/2024</td>
+				  <td>7/14/2024</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p>The table above describes the specifications for each of the major satellite imagery programs used for various remote sensing applications. 
+		As shown, there exists a variety of imagery datasets generated on a daily, weekly, monthly, and yearly basis which are applicable to various remote sensing projects. </p>
+		
+		<p>Figure 1 below shows a map of the impacted area of study using the Landsat 8 imagery.</p>
+		
+	
+		<a href="images/remote-sensing/wildfire.jpg" target="_blank">
+		<img src="images/remote-sensing/wildfire.jpg" alt="Chico, CA Park Wildfire" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure1: Chico, CA Park Wildfire of 2024</strong></p>
+		
+		<p>The area in red shown above encompasses the total burned area on July 27, 2024. This area measures approximately 344,053 acres of land and would continue to grow throughout 
+		the following days as made evident by the visibly active burning areas along various points of the perimeter of the area.
+		In order to visually demonstrate the differences in satellite imagery compositions of the satellites listed in Table 1, land features in each of the four satellites selected.</p>
+    </section>
+	
+	
+
+    <section>
+      <h3>4. DISCUSSION</h3>
+	  <p>As discussed above, spatial resolution has an enormous impact on the use and application of imagery used for remote sensing projects. A higher degree of resolution provides 
+	  higher quality images which translates to higher quality data and a better analysis in the long run. For general land analysis projects, a lower spatial resolution as seen on 
+	  the MODIS might be sufficient for the analysis depending on the parameters of the project and likely leads to less data storage requirements. A higher resolution image, such as 
+	  Landsat 8 or PlanetScope might be more suitable, or required, for a detailed land cover analysis which might include vegetation health, soil conditions, or as in this study,
+	  wildfire impacts. NAIP imagery takes this application one step further as it has the highest spatial resolution of all the aforementioned satellites making it a suitable candidate 
+	  for literal on the ground vegetation conditions.</p>
+	  
+
+	  <p>With the Landsat 8 image of Figure 1 above taken into consideration, accuracy in an image with a 30x30 spatial resolution could lead to slightly inaccurate data of the wildfire
+	  boundaries due to a lower resolution than when compared with a satellite with a higher resolution such as the PlanetScope project. For this analysis, the Landsat 8 image provides 
+	  sufficient enough data to delineate the extent of the wildfire without the loss of much quality. Additionally, with a larger number of spectral bands, filtering of smoke by use of a 
+	  false-color composite makes delineation that much easier.</p>
+		
+	  <p>One final aspect of these satellites to take into consideration is the size of each of the images. In general, higher resolution, higher quality images will have a higher demand for 
+	  storage requirements as each image holds more data than that of a lower resolution. Depending on the analysis type, and goals of the analysis, it might be better suited to use a lower 
+	  resolution image than a higher resolution image based on total land area being analyzed. With higher resolution images, an increase of land area directly increases the number of images 
+	  and storage space. Lower resolution images with a large area footprint will require less images and therefore less data storage requirements. Taking into storage requirements and 
+	  processing power of the machine are integral to any future analysis.</p>
+    </section>
+    <a href="remote-sensing.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Remote Sensing Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>
