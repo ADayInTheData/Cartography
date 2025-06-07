@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Least Cost Path Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Least Cost Path Analysis for Wolpertinger Investigations in Redwoods State Park</h2>
+    <p><em>Adam Day | November, 2024</em></p>
+	
+	
+	
+	<section>
+      <h3>INTRODUCTION</h3>
+      <p>The purpose of this report is to assist the Federal Division of Cryptid Monitoring (FDCM) in their ongoing investigation efforts of the Cryptid Zoological field of study, 
+	  with the  <a href="https://en.wikipedia.org/wiki/Wolpertinger" target="blank">"Wolpertinger"</a>being the focus of this study. The Wolpertinger is known by Bavarian folklore as a fanged animal with the head of a rabbit, the body of a squirrel, 
+	  the wings of a pheasant, and the antlers of a deer. Historically,  these creatures are only sighted by individuals who have consumed copious quantities of beer, 
+	  with the most recent human-to-creature contact dated [REDACTED] and occurring in [REDACTED]. An undisclosed source has recently made the division aware of several identified 
+	  den locations of these animals located in the Redwood State Park in California, near the town of Orick.</p>
+	  
+	  <p>Using GIS, coupled with Humboldt State University student gathered data, this study created a least-cost path (LCP) model to determine the routes most likely taken by these creatures 
+	  between Orick and the known den locations. It has been discovered by the students that the creature migratory patterns suggest late September and early October to be a 
+	  time of increased movement. Additionally, data also suggests that the Wolpertinger prefers areas of high elevation and steep slopes, dense forest canopies, 
+	  and will avoid crossing rivers and/or lakes during their migration. This data informed the study of the parameters set for the model which are as follows:</p>
+	  
+	  <li>Elevation</li>
+	  <li>Slope</li>
+	  <li>Tree Canopy Density</li>
+	  <li>Hydrology</li>
+	  
+	  <p>By evaluating each of these criteria within the framework of this model, this project allows users to learn how to acquire data from public sources, geocode locations, 
+	  import XY data using different spatial reference systems, as well as defining projections of various map layers. These skills, when combined, enable users of GIS to create 
+	  replicable least-cost paths models and model migration corridors.</p>
+	</section>
+
+    <section>
+      <h3>METHODS</h3>
+      <p>ArcGIS Pro was the GIS used for this analysis with the NAD 1983 UTM Zone 10N used as spatial reference system for this project. This reference system was chosen as it 
+	  geographically reflects the area of study. Basemap layers for this area of study were obtained from the National Historical Geographic Information System (NHGIS) 
+	  using the most recent 2023 County/State GIS shape files. Wolpertinger den locations were obtained from HSU students who recorded the locations using hand-held GPS receivers. 
+	  The coordinates were processed in .CSV table format and input into ArcGIS Pro using the GSC WGS 194 Coordinate System as the origin coordinate system and the 
+	  NAD 1983 UTM Zone 10N as the output coordinate system. The town of Orick was geolocated using the Orick US Post office address 121147 US-101, Orick, CA 95555 
+	  as the reference point with Google Maps used to obtain latitude and longitude measurements. The coordinates were input into ArcGIS Pro using the same 
+	  process as the den locations. The study area was defined as the area encompassing all den locations and the town of Orick and was demarcated using 
+	  ArcGIS Pro’s drawing tool to draw a rectangle around the area which was then exported to its own shapefile.</p>
+	  
+	  <p>Using the online USGS National Map Viewer, elevation data was obtained for the area of study. The two most recent Digital Elevation Model (DEM) 
+	  data files were used. The DEM layers were combined into one DEM file which reflected the boundaries of the demarcated study area. Hydrography data was 
+	  also obtained from the USGS National Map Viewer using the most recent raster file available and were projected to study area in the previously mentioned 
+	  spatial reference system. Tree canopy cover data was obtained from the Multi-Resolution Land Characteristics (MRLC) consortium using the most recent 
+	  Continental US data file and projecting to match the spatial reference system as done with the previous data files.</p>
+	  
+	  <p>To accurately represent the cost surface model for each of the data files, and to ensure consistency of values when creating the LCP, each of the DEM files were reclassified using the following parameters:</p>
+	  
+	  <!--Table 1-->
+	  <p align=center><strong>Elevation Reclassification Values</strong></p>
+	  <table class="data-table">
+			<thead>
+				<tr>
+				  <th>FROM</th>
+				  <th>TO</th>
+				  <th>OUT</th>
+				  <th>MAPPING</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>-1</td>
+				  <td>1</td>
+				  <td>10</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>1</td>
+				  <td>100</td>
+				  <td>8</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>100</td>
+				  <td>200</td>
+				  <td>6</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>200</td>
+				  <td>400</td>
+				  <td>4</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>400</td>
+				  <td>600</td>
+				  <td>2</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>600</td>
+				  <td>621</td>
+				  <td>1</td>
+				  <td>ValueToValue</td>
+				</tr>
+			</tbody>
+		</table>
+	<!--Table 2-->	
+	<p align=center><strong>Slope Reclassification Values</strong></p>
+	  <table class="data-table">
+			<thead>
+				<tr>
+				  <th>FROM</th>
+				  <th>TO</th>
+				  <th>OUT</th>
+				  <th>MAPPING</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>0</td>
+				  <td>5</td>
+				  <td>10</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>5</td>
+				  <td>10</td>
+				  <td>9</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>10</td>
+				  <td>20</td>
+				  <td>8</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>20</td>
+				  <td>25</td>
+				  <td>6</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>25</td>
+				  <td>30</td>
+				  <td>4</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>30</td>
+				  <td>35</td>
+				  <td>2</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>35</td>
+				  <td>90</td>
+				  <td>1</td>
+				  <td>ValueToValue</td>
+				</tr>
+			</tbody>
+			</table>
+			
+			<!--Table 3-->
+	<p align=center><strong>Tree Canopy Reclassification Values</strong></p>
+	  <table class="data-table">
+			<thead>
+				<tr>
+				  <th>FROM</th>
+				  <th>TO</th>
+				  <th>OUT</th>
+				  <th>MAPPING</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>0</td>
+				  <td>20</td>
+				  <td>10</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>20</td>
+				  <td>40</td>
+				  <td>7</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>40</td>
+				  <td>60</td>
+				  <td>5</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>60</td>
+				  <td>80</td>
+				  <td>3</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>80</td>
+				  <td>90</td>
+				  <td>2</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>90</td>
+				  <td>100</td>
+				  <td>1</td>
+				  <td>ValueToValue</td>
+				</tr>
+				<tr>
+				  <td>35</td>
+				  <td>90</td>
+				  <td>1</td>
+				  <td>ValueToValue</td>
+				</tr>
+			</tbody>
+		</table>
+		
+					<!--Table 4-->
+	<p align=center><strong>Hydrography Reclassification Values</strong></p>
+	  <table class="data-table">
+			<thead>
+				<tr>
+				  <th>START</th>
+				  <th>END</th>
+				  <th>VALUE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>-433287</td>
+				  <td>0</td>
+				  <td>10</td>
+				</tr>
+				<tr>
+				  <td>0</td>
+				  <td>643976</td>
+				  <td>1</td>
+			</tbody>
+		</table>
+		
+		<p>Note, due to the nature of the Wolpertinger and their aversion to cross water bodies, only two reclassification values 
+		are necessary for the hydrography data. Therefore, the classification method in ArcGIS was set to ‘Manual’ with the number 
+		of classes equal to two reflecting a ‘yes’ or ‘no’ check on the hydrography data.</p>
+		
+		<p>A total cost surface model was calculated using the combined reclassified values for each of the data sets. This calculation was performed by multiplying each of 
+		the reclassified data sets, elevation, slope, tree canopy, hydrography. Once calculated, ArcGIS Pro output new raster which reflects the total surface cost for 
+		the Wolpertinger to traverse the environment using the values listed above.</p>
+
+
+		<p>Once the total surface cost layer was created, a cost distance surface model was created to measure how the travel cost increases as the Wolpertinger moves away 
+		from both their dens and the town of Orick. Using the Path Distance tool in ArcGIS Pro, Euclidean distance between the cells and the origin feature (Orick, dens) 
+		is calculated to determine the cumulative travel cost based on both the distance and cost surface values. Two raster files were created with both Orick, and the 
+		den locations used as the back-link origin point, and the total cost raster being used as the input cost raster. Using both cost distance surface model rasters, 
+		a migration corridor was established by combining the two layers together. The Corridor tool generated a layer which shows how the Wolpertinger may navigate 
+		the study area by using combined values of the total surface cost layers. Symbology of the layer was adjusted to better visualize the different cost of areas 
+		within the study area.</p>
+		
+		<p>Finally, an LCP was measured using the Cost-Distance tool in ArcGIS with the den locations being used as the origin point, and the town of Orick’s cost distance and 
+		back-link rasters used for the destinations. Values for each of the cost paths were determined between Orick and the individual den locations. These values are 
+		represented in the table below. The raster was then converted into a polyline to visualize the actual likely path the Wolpertinger would take between their dens and 
+		the town of Orick. Figure 1 below shows the results of the LCP.</p>
+	  </section>
+	  
+    <section>
+      <h3>RESULTS</h3>
+	  
+	  <p>The results from the LCP indicate the model successfully routed the most efficient path the Wolpertinger would take from Orick to their various den locations throughout the Red Wood State Park. 
+	  Figure 1 below is a visual representation of the paths to each individual den location.</p>
+	  
+		<a href="images/geospatial/lpc.png" target="_blank">
+		<img src="images/geospatial/lpc.png" alt="Least Cost Path" class="embedded-map"/>
+		</a>
+		<p align=center ><strong>Figure 1: Wolpertinger Least-Cost-Paths from Orick to Den Locations</strong></p>
+		
+		<p>As made evident by the map, low travel cost areas (white colored areas) were more preferred by the model than the high travel costs areas (red colored areas) 
+		and represent the paths the Wolpertingers likely take during their migration season. Table 1 below quantifies each path by the total relative cost for each path.</p>
+		
+		<p align=center ><strong>Table 1: Wolpertinger Least-Cost-Paths Relative Costs Per Path</strong></p>
+	
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th>Den Name</th>
+				  <th>Relative Cost</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>A</td>
+				  <td>1578260.87</td>
+				</tr>
+				<tr>
+				  <td>B</td>
+				  <td>992692</td>
+				</tr>
+				<tr>
+				  <td>C</td>
+				  <td>1123335</td>
+				</tr>
+				<tr>
+				  <td>D</td>
+				  <td>1199852.37</td>
+				</tr>
+				<tr>
+				  <td>E</td>
+				  <td>1148095.87</td>
+				</tr>
+				<tr>
+				  <td>F</td>
+				  <td>1093132.12</td>
+				</tr>
+				<tr>
+				  <td>G</td>
+				  <td>1252863.50</td>
+				</tr>
+				<tr>
+				  <td>H</td>
+				  <td>1170693.75</td>
+				</tr>
+				<tr>
+				  <td>I</td>
+				  <td>1069059.25</td>
+				</tr>
+				<tr>
+				  <td>J</td>
+				  <td>1086159.37</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p>As the Table shows, the path from Orick to Den B is relatively the easiest path for the Wolpertinger to take with a relative cost of 992692. The path from Orick to Den A is the 
+		longest/most difficult path to traverse with a relative cost value of 1578260.875.</p>
+    </section>
+	
+	<section>
+      <h3>CONCLUSION</h3>
+      <p>The outcomes of the LCP accurately reflect the nature of the Wolpertinger and identify the paths they likely take to their dens during their migratory season. Den B is quickest and easiest den to navigate to 
+	  from Orick and is made clear by both the map and the relative cost values. With the area around Den B being high in elevation and surrounded by numerous slopes, it makes it an ideal location for a den. 
+	  The corridor heading east then northeast of Orick sees the remaining traffic to other den locations, at least until the fork before Den I and Den J. From here, the landscape varies sporadically and the 
+	  Wolpertinger has many different paths and routes to choose from based on the various Den locations. This northern area sees a gradual decrease in elevation and slopes making the Wolpertinger less likely 
+	  to navigate these parts outside of migration to their dens. Finally, as the Wolpertinger moves away from Orick and closer to Den A, the cost increases significantly as the distance increases despite the 
+	  increase in elevation and slope. Note the northeastern border delineated by the Klamath River which shows a strong red color indicating the Wolpertinger unlikely to travers.</p>
+	  
+	  <p>Ultimately the outcome of this model was successful in showing the least cost paths of the Wolpertinger to their various den locations in Redwood State Park. While the focus of this study was centered around 
+	  the Wolpertinger in Redwood State Park, the model can be adjusted to fit the needs of the FDCM in their Cryptid monitoring efforts. It is important to note that while some base assumptions were made of the 
+	  Wolpertinger and their propensity to navigate their environment, care should be taken to ensure accurate relative costs data are predicted for any species being monitored to allow for the model to generate 
+	  accurate data. Regardless, this model can prove useful in tracking least cost paths from one location to another and establish wildlife corridors for various wildlife or cryptid species.</p>
+	</section>
+    <a href="geospatial.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Geospatial Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>

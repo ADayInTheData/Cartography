@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tobler Music Festival</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Tobler Music Festival Two: Geospatial Analysis & Site Location</h2>
+    <p><em>Adam Day | September, 2024</em></p>
+
+    
+	<section>
+	<h3>ABSTRACT</h3>
+	
+	<p>A geospatial analysis was conducted for the Tobler Music Group Site Selection Committee to identify optimal areas for the upcoming Music Festival Two, 
+	scheduled in October 2024. Using ArcGIS Pro, the analysis calculated the area of available land to establish maximum capacity for parking lots, 
+	camping areas, and the event field. This analysis ensures that sufficient space is to provide for festival attendees, event staff, security, 
+	and medical personnel while accounting for unsuitable topography and maintaining regulatory compliance. Aerial imagery and parcel boundary
+	data were used to identify areas for parking, camping, and event activities. Calculations were made based on current fire and safety regulations 
+	and operational needs. Additionally, this analysis conducted a spatial assessment of the available lodging and leisure facilities situated within 
+	a radius of 30 km to support event planning and reduce congestion on site. This assessment highlights capacity metrics to ensures the festival 
+	will successfully accommodate the adequate number of attendees while adhering to local fire and safety regulations.</p>
+	</section>
+	
+	<section>
+	<h3>INTRODUCTION</h3>
+	
+	<p>The purpose of this report is to assist the Tobler Music Group site selection committee in their geospatial analysis efforts for the upcoming 
+	Music Festival Two hosted in October 2024. ArcGIS Pro was used in the evaluation of current available land to determine max capacities for parking spaces, 
+	camping spaces, and the event field to ensure adequate space is given as to not overwhelm the site. Special considerations were taken to include 
+	allocation of space for staff, security, and medical personnel while accounting for unusable areas in the surrounding vicinity. This analysis 
+	used current aerial imaging of the selected site as well as parcel boundary information to establish locations best suited for parking, camping, 
+	and the event field. The two map figures below show the location of the event at the state level and the local level.</p>
+	
+	<a href="images/geospatial/tobler/state.png" target="_blank">
+		<img src="images/geospatial/tobler/state.png" alt="State Map" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Music Festival Two Location - State Level</strong></p>
+		
+	<a href="images/geospatial/tobler/regional.png" target="_blank">
+		<img src="images/geospatial/tobler/regional.png" alt="State Map" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 2: Music Festival Two Location - Local Level</strong></p>
+	</section>
+	
+	
+	
+	<section>
+      <h3>METHODS</h3>
+      <p>The analysis began with geospatial data retrieved from Humboldt State University Online Geospatial department, which included several data layers 
+	  stored within a pre-established geodatabase. These layers include eventsite.shp, imagery.tif, LeisureSpots.shp, and Lodging.shp. Each shapefile 
+	  was exported into a working folder, while the raster file was converted into an IMAGINE file format via the Copy Raster tool in ArcGIS Pro. The 
+	  spatial reference system used for this analysis was NAD 83 UTM Zone 10 N, appropriate for the northwestern California location of the event site. 
+	  Each layer was verified to ensure the spatial reference system consistency. Figure 3 below shows the map created using this workflow.</p>
+	  
+	  <p>To determine parking lot size and number of permitted vehicles, a new shapefile titled parking.shp was created. This shapefile was then digitized 
+	  to reflect the area outlined by the site selection committee which included land on the northern parcel, just below the driveway, and to the western 
+	  edge of the tree line. Various points along these boundaries were plotted to create the polygon encompassing this area. Four fields were added to 
+	  the attribute table of this shapefile. The “Name” field was added as a text field type for labeling purposes. The “Area” field was added as a double 
+	  field type and was used for determining the parking lot area in square meters. The “Count” field was added as a long field type and was used for 
+	  determining the number of parking spaces available. Lastly, the “Capacity” field was added as a long integer field type to estimate the number 
+	  of attendees based on parking spaces. The area of the parking lot was then calculated in the Area field via the ‘Calculate Geometry’ tool located 
+	  in the attribute table of parking.shp. Table 1 below reflects the outcome of this calculation.</p>
+	  
+	  <p>After the calculating the parking lot area in square meters, estimations of the parking lot were determined based on the following criteria:</p>
+	  
+	  <li>20 % of the total parking area must be reserved for access lanes between the spaces.</li>
+	  <li>Each parking space is 30 meters squared.</li>
+	  <li>20 parking spaces must be reserved for staff and emergency vehicles.</li>
+	  <li>The final result must be a whole number, no fractions.</li>
+	  <br></br>
+	  
+	  <p>This calculation was completed via the following formula:</p>
+	  
+	 <p class="center"><em>Parking Spaces=(Area*0.8)/30  -20</em></p>
+	 
+	 <p>In the Field Calculator tool, the following script was used to achieve this formula in the Count field:</p>
+	 
+	 <p class="center"><em>(!Area! * 0.8 / 30) – 20</em></p>
+	 
+	 <p>Results for each of these outcomes are listed below in Table 1.</p>
+	  
+	  <p>A similar workflow was used in creating the Event Field shapefile (EventField.shp). The siting committee determined the best location for this area is the
+	  middle parcels just behind the residence on the west side of the parking lot and encompasses the accessible area between the trees while the southern boundary 
+	  will be a straight line between the trees. The eastern boundary is also a straight line between the large opening in the nearby trees. Four field identical 
+	  to the parking lot field were created for this shapefile and estimates for the Event Field Capacity were determined using the following criteria:</p>
+	  
+	  <li>200 square meters must be set aside for the staging area.</li>
+	  <li>500 square meters should also be reserved for vendor booths, staff, security, and medical personnel.</li>
+	  <li>To comply with fire and safety regulations, maximum capacity of the remaining area at any given time is calculated at 2 square meters per person.</li>
+	  <li>The final result must be a whole number, no fractions.</li>
+	  <br></br>
+	  
+	<p>To determine reserved area, the following formula was used:</p>
+	 
+	<p class="center"><em>Remaining Area=200+500</em></p>
+	 
+	<p>This value (700) was subtracted from the calculated area of the Event Field to determine the remaining area. The follow formula was used to determine the maximum capacity calculation:</p>
+	 
+	<p class="center"><em>Capacity=(Remaining Area)/2</em></p>
+	
+	<p>Using the Field Calculator too in ArcGIS, the following scrip achieved this formula result:</p>
+	 
+	<p class="center"><em>int((!Area! - 700) / 2)</em></p>
+	
+	<p>Lastly, max capacity of the Event Field (110%) was calculated in the Capacity field using the following script:</p>
+	
+	<p class="center"><em>!Count! * 1.10</em></p>
+	
+	<p>Results for each of these outcomes are listed below in Table 1.</p>
+	  
+	  <p>To determine campsite locations, both the middle and parcels were dissolved into one shapefile. Next, using the Erase tool, the eventfield.shp shapefile was used as 
+	  the erasing feature over the combined middle and lower parcels shapefile. This produced the Campsites.shp shapefile. Once the campsite locations were determined, 
+	  estimated capacity for the camping area was calculated under the following criteria:</p>
+	  
+	  <li>Each campsite will take up approximately 800 square meters.</li>
+	  <li>The immediate area around the homes on each parcel must also be excluded. This will be 22,000 square meters subtracted from the total available area.</li>
+	  <li>It is estimated that 12,000 square meters must also be subtracted from the total to exclude certain unusable areas throughout the parcels.</li>
+	  <li>10 campsites must be reserved for staff, security, and medical personnel.</li>
+	  <li>8 persons per site</li>
+	  <li>The final result must be a whole number, no fractions.</li>
+	  <br></br>
+	  
+	<p>This was calculation was achieved using a similar process flow as before. Reserve area calculation is as follows:</p>
+	
+	<p class="center"><em>Reserved area=22,000+12,000</em></p>
+	
+	<p>Total area reserved for staff campsites was determined by:</p>
+	
+	<p class="center"><em>Staff sites=10 x 8,000</em></p>
+	
+	<p>Then, the remaining area was calculated using the following formula:</p>
+	
+	<p class="center"><em>Remaining Area=Total Area-34,000-8,000</em></p>
+	
+	<p>“Total Area” in this calculation refers to the total parcel area as calculated via the ‘Calculate Geometry’ tool in ArcGIS Pro.</p>
+	
+	<p>Finally, the total number of campsites was calculated using the following formula:</p>
+	
+	<p class="center"><em>Public Campsites=(Remaining Area)/800</em></p>
+	
+	<p>As before, these values were added to the Field Calculator tool to calculate the number of campsites available. The follow scrip was used in the Count field for this calculation:</p>
+	
+	<p class="center"><em>int((!Shape_Area! - 34000 - 8000) / 800)</em></p>
+	
+	<p>The committee has limited each campsite to a max occupancy of eight people per site, therefore the following scrip was used to calculate max occupancy per campsite:</p>
+	
+	<p class="center"><em>!Count! * 8</em></p>
+	
+	<p>Results for each of these outcomes are listed below in Table 1.</p>
+	
+	<p>The last geospatial analysis performed for this event was one to determine the number of leisure spots and lodging sites within a 30 km radius from the music festival. 
+	This was achieved by performing a spatial join between the eventfield.shp feature and the LeisureSpots.shp feature. The join operation used was JOIN_ONE_TO_ONE with a match 
+	option of WITHIN_A_DISTANCE of 30 km radius. The same operation was performed for the Lodging.shp using the same join operation and match options. Results for these outcomes 
+	can be found below in Table 2.</p>
+
+	
+    <section>
+      <h3>RESULTS</h3>
+	  
+	  <p>The map shown below displays the outcome of the geospatial analysis performed for the Music Festival Number Two. As made evident by the separate-colored polygons, a clear 
+	  delineation can be seen between the northern Parking Lot area shaded in grey, the northwestern Event Field location shaded in pink, and the surrounding Campsite locations shaded in green. </p>
+	  
+		<a href="images/geospatial/tobler/festival_map.png" target="_blank">
+		<img src="images/geospatial/tobler/festival_map.png" alt="Music Festival Map" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Music Festival Two Map</strong></p>
+		
+		<p>The Parking Lot area encompasses an area of 23,961 square meters and will support a maximum number of 619 cars allowing for a total of 1857 festival goers using a three person per car estimate. 
+		The Event Field contains 18,414 square meters of area and will provide enough space for approximately 8,857 festival goes with a cushion of 2 square meters per person taken into consideration 
+		per local fire and safety regulations. Max capacity of this number was determined to be 110% of this count, or 9,743 total people. Given the number of available parking spaces for this event 
+		is well below the max number of people able to fit in the Event Field, spacing and overcrowding of the Event Field should be a none-issue. Lastly, the total Campsite area was determined to be 
+		20,212.6 square meters supporting a total of 200 campsites, with 8 persons per campsite this equates to a maximum campsite capacity of 1,600 total people. While the parking lot capacity 
+		does exceed the camping max capacity by 257 people, it is important to note that not every festival goer will decide to camp at the Music Festival and daily commuters will be a necessity. 
+		See below for a table breakdown of this data.</p>
+		
+	
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th>Name</th>
+				  <th>Area [sq m]</th>
+				  <th>Count</th>
+				  <th>Capacity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>Parking</td>
+				  <td>23961</td>
+				  <td>618</td>
+				  <td>1857</td>
+				</tr>
+				<tr>
+				  <td>Event Field</td>
+				  <td>18414</td>
+				  <td>8857</td>
+				  <td>9743</td>
+				</tr>
+				
+				<tr>
+				  <td>Campsites</td>
+				  <td>202212</td>
+				  <td>200</td>
+				  <td>1600</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p>With daily commuting in mind, it was determined that a total of 41 lodging locations existing with a 30 sq km radius from the Music Festival. 
+		This will offload some of the burden put on the Music Festival event location by allowing for individuals to attend the Music Festival while also 
+		returning to a lodging location each night, eliminating the need for additional campgrounds. Additionally, 29 suitable leisure spots were located 
+		within this 30 sq km radius of the Music Festival, allowing for individuals to vacate the festival and return at their convenience, once again 
+		reducing total load placed on the Music Festival grounds.</p>
+    </section>
+	
+	
+	
+	</section>
+	<h3>CONCLUSION</h3>
+	
+	<p>With the upcoming Music Festival Two scheduled next month, adequate space must remain a top priority for a successful event. The geospatial analysis performed 
+	in this assessment determined the festival should account for a total of 8857 attendees with a max capacity (110% of total) being 9743. This amount will allow for 
+	the festival to remain in compliance with current fire and safety regulations. The committee should plan to provide a total of 618 parking lot spaces in addition 
+	to the amount of parking required for event staff. Due to the limited number of parking spaces compared to total number of attendees, provisions for public transport 
+	methods such as busing or Uber services should be factored into planning and coordinating vehicle traffic flow. Lastly, festival camping should provide adequate 
+	space for 200 individual campsites with each site providing enough space for 8 individuals. This equates to a max camping capacity of 1600 people. It was determined 
+	that within a 30 sq km radius from Music Festival Two, 41 lodging facilities are available to provide overnight stay for festival goers who do not intend to camp. 
+	29 leisure spots are included within this 30 sq km radius and should provide festival goers with alternative means to entertainment should they wish to seek it.</p>
+	</section>
+    <a href="geospatial.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Geospatial Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>

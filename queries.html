@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geospatial Queries</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Serenity With a Side of Civilization</h2>
+    <p><em>Adam Day | September, 2024</em></p>
+
+    <section>
+      <h3>METHODS</h3>
+      <p>In an effort to identify the ideal city which meets specified criteria involving population and relative proximity to high and low population areas, 
+	  ArcGIS Pro was utilized to accomplish this task. U.S. county shapefiles and census data was obtained from the National 
+	  Historical Geographical Information System (NHGIS). Map projection was set to USA Contiguous Albers Equal Area Conic. A spatial join using the ‘GISJOIN’ 
+	  field allowed for an easy join between both shapefiles with the population.csv data table. Two new output feature classes were created and exported to the map 
+	  (places_pop_2010.shp & county_pop_2010.shp). Next, population density was calculated for each county through the use of the ‘Calculate Geometry’ tool. 
+	  Using various queries, the data from these shapefiles were filtered down based on the following criteria:</p>
+	  
+
+	  <li>Cities with a population between 20,000 and 40,000 residents.</li>
+	  <li>Cities within a 50-mile distance of a high population city (250,000+ residents).</li>
+	  <li>Cities within counties that have fewer than 25 person per square mile.</li>
+	  <br></br>
+	
+	  
+	  <p>Each query result was extracted and saved to maintain project trackability. Final results identified one city meeting all previously listed criteria. 
+	  A map displaying the findings was created and saved to the Final subfolder as a high-resolution JPG file with 300 dpi quality settings. 
+	  The project followed a workflow as described by the image below.</p>
+
+		<a href="images/geospatial/queries/flow.jpg" target="_blank">
+		<img src="images/geospatial/queries/flow.jpg" alt="Project Flowchart" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Project Workflow Chart</strong></p>
+	  </section>
+    <section>
+      <h3>RESULTS</h3>
+	  
+	  <p>The City of Pahrump, Nevada was identified as the only city to contain a population and proximity based on the following criteria:</p>
+	  
+	  <li>Cities with a population between 20,000 and 40,000 residents.</li>
+	  <li>Cities within a 50-mile distance of a high population city (250,000+ residents).</li>
+	  <li>Cities within counties that have fewer than 25 person per square mile.</li>
+	  <br></br>
+	  
+	  <p>Pahrump is located in Nye County, Nevada which encompasses roughly 18,200 square miles. Additionally, in 2010 the recorded population for Nye County was 43,946 
+	  citizens which boasts an average population density of approximately 2.41 citizens per square mile. Despite its relatively “rural” aspects, Nye County is located 
+	  approximately 25 miles away from Las Vegas, Nevada, allowing for residents of Nye County and Pahrump City to experience both the city and rural lifestyles with relative ease.</p>
+	  
+	  <p>Figure 2 below shows the outcomes of the queries involved with the criteria established to locate the ideal city. As made evident by the map, much of the available locations 
+	  based on these criteria are located west of the Mississippi river extending past the Midwest and through the Rockies. While few exceptions exist such as far northeast New England 
+	  and scattered areas throughout the American South, many opportunities for a rural living experience exist in the Midwest and the Rockies. With regards to high population cities, 
+	  Pahrump Nevada remains the ideal candidate for its close proximity to not only Las Vegas, but many other high population cities scattered throughout the southern California region.</p>
+	  
+		<a href="images/geospatial/queries/final.jpg" target="_blank">
+		<img src="images/geospatial/queries/final.jpg" alt="Pahrump" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 2: City of Pahrump</strong></p>
+    </section>
+    <a href="geospatial.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Geospatial Projects</a>
+  </main>
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>
