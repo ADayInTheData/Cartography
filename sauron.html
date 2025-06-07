@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eye of Suaron Viewshed Analysis</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Visibility of The Dark Lord Sauron</h2>
+	<h2><em>"One ring to rule them all, One ring to find them,</em></h2>
+	<h2><em>One ring to bring them all, and in the darkness bind them."</em></h2>
+    <p><em>Adam Day | October, 2024</em></p>
+
+    <section>
+      <h3>METHODS</h3>
+      <p>In an effort to determine the extent of visibility achievable by the Eye of Sauron, located atop the tower of Barad-dûr, the Council of Elrond determined a viewshed analysis was 
+	  to be performed to measure this and aid the Fellowship in their quest to destroy the One Ring.  To begin, a Digital Elevation Model (DEM) was imported into ArcGIS Pro and projected 
+	  onto the UTM_Zone_31_Northern_Hemisphere spatial reference system. This DEM was then used to create a Hillshade raster using the Hillshade tool in the Spatial Analyst toolbox. 
+	  Once the hillshade raster was created, the stretch type in the symbology options was changed to Standard Deviation method to improve appearance.</p>
+	  
+	  <p>A shapefile containing locations of all Mordor controlled citadels throughout Middle Earth was then imported into ArcGIS Pro under the same spatial reference system was the original DEM. 
+	  Using the Select by Attribute feature on the Citadels shapefile, a query was ran to select Barad- dûr. The Barad- dûr selection was then exported onto it’s own feature layer while the original 
+	  Citadels layer was removed. With the Barad- dûr shapefile in place, the Viewshed tool was used to create a viewshed of all areas visible to Barad- dûr using the original DEM as the input raster 
+	  and Barad- dûr as the input point. Because estimates of Barad-dûr put the tower at approximately 5,000 feet tall, an OFFSETA field type was added to the Barad- dûr attribute table with short 
+	  integer as the field type. Because the map’s units are in meters, a conversion of the tower’s height from feet to meters was used using the following formula:</p>
+	  
+	  <p class="center"><strong>5000/3.281</strong></p>
+	  
+	  <p>This puts the tower of Barad- dûr at approximately 1,524 meters tall, using this as the value for the new OFFESTA field type. This as achieved using the field calculator tool in the Barad- dûr 
+	  attribute table. With the new value input, the Viewshed tool was used again to update map to show all locations throughout Middle Earth which are visible to the Eye of Sauron located atop the 
+	  tower of Barad- dûr. Figure 1 below shows the results of this analysis. Upon completion of the analysis, edits and adjustments were made to the map to improve visibility and also including 
+	  important areas of location throughout Middle Earth.</p>
+	  </section>
+    <section>
+      <h3>RESULTS</h3>
+	  
+	  <p>As made evident by the map in Figure 1, approximately 60% of all Middle Earth is visible to the Eye of Sauron by way of Barad- dûr. The Eye’s visibility extends to much of the southern, eastern, 
+	  and northern portions of Middle Earth with scattered areas throughout the western portion visible. Rohan is almost completely exposed to the Eye and will not be a suitable location for the 
+	  Fellowship to travel with the Ring. Gondor remains mostly out of sight, but due to its geographical location, will prove to be a difficult location to reach with the Ring as the areas 
+	  surrounding its borders are mostly visible. Thankfully, the remaining lands located within Eriador, including The Shire, remain almost completely hidden from the Eye making it obvious as to 
+	  how Bilbo was able to keep the Ring hidden there for so long. Regardless, it seems that once the Fellowship journeys out of Eriador and through The Misty Mountains, a great deal of aid and 
+	  precaution must be taken to ensure the Ring remains hidden, as much of the lands beyond the mountains exist under the constant gaze of from The Dark Lord Sauron.</p>
+	  
+	  
+		<a href="images/geospatial/eye_of_sauron.png" target="_blank">
+		<img src="images/geospatial/eye_of_sauron.png" alt="Eye of Suaron" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Areas of Middle Earth Visible to Barad- dûr</strong></p>
+    </section>
+    <a href="geospatial.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Geospatial Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lidar Study</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>LiDAR Elevation Study</h2>
+    <p><em>Adam Day | May, 2025</em></p>
+
+    <section>
+      <h3>OUTLINE</h3>
+      <p>This study uses LIDAR datasets, coupled with ArcGIS Pro to look at different way to visualize LIDAR data in both 2D and 3D. The project
+	  demonstrates how high-resolution elevation and surface models can be created using LiDAR data. The workflow began by converting LAZ files, which
+	  are compressed LiDAR point cloud data files, into LAS datasets, ensuring they were georeferenced correctly for spatial analysis.</p>
+	  
+	  <p>After the data was loaded, the LiDAR point cloud was expolored in both 2D and 3D environments, offering a detailed view of terrain surfaes
+	  and vegetation structure. From here, a Digital Elevation Model (DEM) was generated to represent the bare earth surface. Coupled with this, 
+	  a Digital Surface Model (DSM) was created to capture the tops of buildings, trees, and other above-ground features.</p>
+	  
+	  <p>To better understand vegetation height, a Canopy Height Model (CHM) was created by subtracting the DEM from the DSM, showing the 
+	  vertical structure of forest canopies. These elevation models were further enhanced with hillshade visualizations 
+	  to emphasize terrain features through shadow and light effects.</p>
+	  
+	  <p>The final outputs included both static and interactive 3D visualizations, along with cartographic 2D map layouts, 
+	  showing the spatial patterns of elevation and canopy height across the study area.</p>
+	  
+    <section>
+  
+		<a href="images/remote-sensing/lidar/elevation.jpg" target="_blank">
+		<img src="images/remote-sensing/lidar/elevation.jpg" alt="LiDAR Elevation" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: LiDAR derived 2D Elevation Map</strong></p>
+
+		<a href="images/remote-sensing/lidar/canopy.jpg" target="_blank">
+		<img src="images/remote-sensing/lidar/canopy.jpg" alt="LiDAR Canopy" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 2: LiDAR derived 2D Canopy Map</strong></p>
+		
+		<a href="images/remote-sensing/lidar/3d_elevation.jpg" target="_blank">
+		<img src="images/remote-sensing/lidar/3d_elevation.jpg" alt="LiDAR derived 3D Elevation Map" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 3: LiDAR derived 3D Elevation Map</strong></p>
+		
+		<a href="images/remote-sensing/lidar/3d_canopy_elevation.jpg" target="_blank">
+		<img src="images/remote-sensing/lidar/3d_canopy_elevation.jpg" alt="LiDAR derived 3D Elevation Map with Canopy" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 4: LiDAR derived 3D Elevation Map with Canopy</strong></p>
+		
+		<a href="images/remote-sensing/lidar/3d_image.jpg" target="_blank">
+		<img src="images/remote-sensing/lidar/3d_image.jpg" alt="LiDAR derived 3D Image" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 5: LiDAR derived 3D Image</strong></p>
+    </section>
+    <a href="remote-sensing.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Remote Sensing Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>

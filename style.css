@@ -388,3 +388,7 @@ footer {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+
+.center {
+	text-align: center;
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HP7HLD7VVQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HP7HLD7VVQ');
+</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humboldt Bay Sea Level Rise</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <header>
+    <h1>Conservation Cartography</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="geospatial.html">Geospatial Analysis</a></li>
+        <li><a href="cartography.html">Cartography</a></li>
+        <li><a href="remote-sensing.html">Remote Sensing</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Measuring Sea Level Rise Around Humboldt Bay, CA</h2>
+    <p><em>Adam Day | October, 2024</em></p>
+
+    <section>
+      <h3>METHODS</h3>
+      <p>The purpose of this lab was to measure sea level rise around Humboldt Bay and analyze what areas would be impacted at various flood levels. 
+	  Digital Elevation Model (DEM) data of Humboldt County, CA was used in this analysis. After importing the DEM data to ArcGIS Pro, a review of the 
+	  map’s spatial reference system was made to ensure the map projection was set for NAD 1983 UTM Zone 10 North. Once the DEM data was configured 
+	  correctly, the Raster Calculator tool was used to find the elevations at or below sea level. This was achieved by using the following formula:</p>
+	  
+	 <p class="center"><em>DEM_Clipped.img <= 0</em></p>
+	  
+	  <p>The resulting raster export was then saved as MSL_2010.img. The same process was repeated for areas that are less than or equal to 1 meter 
+	  with the resulting raster saved as Below_1m.img. To identify locations where a sea level rise of above 0m but below 1m would flood Humboldt Bay, 
+	  the Raster Calculator tool was used to subtract the MSL_2010.img from Below_1m.img raster. The same process was repeated multiple times to produce 
+	  rasters which show the potential areas of inundation for 2-, 5-, and 10-meters sea level rise. Figure 1 below shows a map of the areas within 
+	  Humboldt Bay that are affected by these various sea level rises.</p>
+	  
+	  <p>A second analysis was performed using the data produced from the first analysis. By use of Humboldt County Parcels data, which contains 
+	  information on each parcel’s zoning designation, we could see the extent of impact of sea level rise in each parcel based on its zoning code. 
+	  To achieve this, the field “EXLU4”, within the attribute table of the Humboldt County parcel data, was summarized to give a count of each parcel’s 
+	  zoning type based on the following groupings:</p>
+	  
+	  <li>City</li>
+	  <li>Agriculture: Includes timber production</li>
+	  <li>Residential: All categories of "residential"</li>
+	  <li>Commercial: All categories of "commercial"</li>
+	  <li>Industrial: All categories of "industrial"</li>
+	  <li>Recreational: Includes camp, golf courses, open spaces</li>
+	  <li>Tribal</li>
+	  <li>Public</li>
+	  <li>Other: All others including blanks</li>
+	  
+	  <p>This data was joined back to the original attribute table of the Humboldt County Parcel data by use of the Joins and Relates tool, 
+	  joining them via the “EXLU4” field. After the join was complete, the data was extracted onto its own feature layer and saved. The Polygon to Raster 
+	  tool was then used on this layer to convert the polygon land use to a raster rile. Cellsize for this new raster was copied from the DEM_Clipped.img 
+	  raster to ensure consistent measurements. Next, the new parcel raster was multiplied by the 1-meter inundation raster and a new “Area” field was added 
+	  to the new raster. This field calculated the area of impact by hectare by using the following formula within the Field Calculator tool:</p>
+	  
+	  <p class="center"><em>‘Count’ * 0.008035<= 0</em></p>
+	  
+	  <p>This process was repeated for the 2-, 5-, and 10-meter inundation rasters.</p>
+	  
+	  <p>Finally, the DEM_Clipped.img raster was reclassified using the Reclassify tool to allow for a classification method for the raster data. 
+	  The classification method used was Manual with break values set to 0, 1, 2, 5, and 10, leaving the last value as the maximum value in the raster data.</p>
+	  
+    <section>
+      <h3>RESULTS</h3>
+	  
+	  <p>Figure 1 below shows the areas of Humboldt Bay impacted by sea level rising of 1, 2, 5, and 10-meters.</p>
+	  
+		<a href="images/geospatial/sealevelrise_humboldtbay.png" target="_blank">
+		<img src="images/geospatial/sealevelrise_humboldtbay.png" alt="Sea Level Rise" class="embedded-map" />
+		</a>
+		<p align=center ><strong>Figure 1: Sea Level Rise Around Humbold Pay</strong></p>
+		
+		<p>As made evident by the map, significant portions of the in-land bay area around Humboldt bay would be impacted by just 2-meter change in sea level. 
+		Further beyond that, many areas would feel impact with a sea level change of 5 meters as far in-land in some areas as 2.5 miles. While much of the coast 
+		itself would face impact with as little as 1 meter in sea level rise, there is a sizable portion of the northern portion of the bay that would not see 
+		impact until a 10-meter sea level rise. This is made evident by the green areas to the north of the bay.</p>
+		
+		<p>Table 1 below represents the area of impact by zoning designations and is measured in hectares.</p>
+		
+	
+		<table class="data-table">
+			<thead>
+				<tr>
+				  <th>Land Use (Code)</th>
+				  <th>Land Use (Type)</th>
+				  <th>Sea Level Rise: 1 Meter</th>
+				  <th>Sea Level Rise: 2 Meters</th>
+				  <th>Sea Level Rise: 5 Meters</th>
+				  <th>Sea Level Rise: 10 Meters</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+				  <td>1</td>
+				  <td>City</td>
+				  <td>162150</td>
+				  <td>157919</td>
+				  <td>149666</td>
+				  <td>144124</td>
+				</tr>
+				<tr>
+				  <td>2</td>
+				  <td>Agricultural</td>
+				  <td>32</td>
+				  <td>555</td>
+				  <td>1381</td>
+				  <td>1844</td>
+				</tr>
+				<tr>
+				  <td>3</td>
+				  <td>Residential</td>
+				  <td>20</td>
+				  <td>2612</td>
+				  <td>8691</td>
+				  <td>12158</td>
+				</tr>
+				<tr>
+				  <td>4</td>
+				  <td>Commercial</td>
+				  <td>3</td>
+				  <td>23</td>
+				  <td>266</td>
+				  <td>752</td>
+				</tr>
+				<tr>
+				  <td>5</td>
+				  <td>Industrial</td>
+				  <td>0</td>
+				  <td>3</td>
+				  <td>33</td>
+				  <td>50</td>
+				</tr>
+				<tr>
+				  <td>6</td>
+				  <td>Recreational</td>
+				  <td>6</td>
+				  <td>76</td>
+				  <td>237</td>
+				  <td>542</td>
+				</tr>
+				<tr>
+				  <td>7</td>
+				  <td>Tribal</td>
+				  <td>47</td>
+				  <td>1014</td>
+				  <td>1650</td>
+				  <td>2120</td>
+				</tr>
+				<tr>
+				  <td>8</td>
+				  <td>Public</td>
+				  <td>0</td>
+				  <td>0</td>
+				  <td>1</td>
+				  <td>1</td>
+				</tr>
+				<tr>
+				  <td>9</td>
+				  <td>Other</td>
+				  <td>4</td>
+				  <td>61</td>
+				  <td>337</td>
+				  <td>670</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<p>As made evident by the data, the city would face much of the impact throughout the various sea level rises. 
+		This must be taken into consideration for future development of storm water protection plans and/or coastal resilience projects. </p>
+		
+		<p>Figure 1 below shows a map of the impacted area of study using the Landsat 8 imagery.</p>
+    </section>
+    <a href="geospatial.html" style="display:inline-block; margin-top:2rem; color: var(--accent); text-decoration: underline;">← Back to Geospatial Projects</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conservation Cartography | Adam Day. All rights reserved.</p>
+  </footer>
+</body>
+</html>
